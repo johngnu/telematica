@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="LAB 273">
+        <meta name="author"      content="John Castillo, Helen Carolina Castillo">
+        <title>LAB 273</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/androidstudio.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    </head>
+
+    <body>
+        <h1>SERVIDOR AHORCADO de 273</h1>
+
+        <p>El siguiente programa es el c&oacute;digo del cliente. Para ejecutar se debe tener el interprete de
+            <strong>Python</strong> instalado.</p>
+        <p>Para correr el programa cliente ejecute en la linea de comandos.</p>
+
+        <pre>
+            <code class="language-shell">
+#python3 mul-client.py
+            </code>
+        </pre>
+
+        <a href="mul-client.py"><button>Descargar</button></a>
+        <pre>
+            <code class="language-python">
+import socket
+host = '192.168.1.1'
+port = 1233
+
+ClientSocket = socket.socket()
+print('Conectando...')
+try:
+    ClientSocket.connect((host, port))
+
+    Response = ClientSocket.recv(2048)
+    print(Response.decode('utf-8'))
+
+    while True:
+        Input = input('Prompt: ')
+        if Input:
+            ClientSocket.send(str.encode(Input))
+            Response = ClientSocket.recv(2048)
+            if not Response: break
+            print(Response.decode('utf-8'))
+
+except socket.error as e:
+    print(str(e))
+
+ClientSocket.close()
+            </code>
+        </pre>
+
+        <a href="mul-client.py"><button>Descargar</button></a>
+
+    </body>
+</html>
+
